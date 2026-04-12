@@ -192,7 +192,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addComponent(lblSort)
                 .addGap(18, 18, 18)
-                .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SearchPanelLayout.setVerticalGroup(
@@ -476,19 +476,6 @@ public class Dashboard extends javax.swing.JFrame {
     players.remove(row);
     refreshTable();
     PlayerManager.savePlayers(players);
-    }                                         
-
-    private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-    String selected = cmbSort.getSelectedItem().toString();
-
-    if (selected.equals("Sort by Name")) {
-        bubbleSortByName();
-    } else if (selected.equals("Sort by Age")) {
-        bubbleSortByAge();
-    }
-
-    refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -499,20 +486,6 @@ public class Dashboard extends javax.swing.JFrame {
     }
 });
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
-        // TODO add your handling code here:
-        
-        String selected = cmbSort.getSelectedItem().toString();
-
-    if (selected.equals("Sort by Name")) {
-        bubbleSortByName();
-    } else if (selected.equals("Sort by Age")) {
-        bubbleSortByAge();
-    }
-
-    refreshTable();
-    }//GEN-LAST:event_cmbSortActionPerformed
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
         // TODO add your handling code here:
@@ -529,6 +502,20 @@ public class Dashboard extends javax.swing.JFrame {
         this.dispose();
     }
     }//GEN-LAST:event_btnSignOutActionPerformed
+
+    private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
+        // TODO add your handling code here:
+        String selected = cmbSort.getSelectedItem().toString();
+
+    if (selected.equals("Sort by Name")) {
+        bubbleSortByName();
+    } else if (selected.equals("Sort by Age")) {
+        bubbleSortByAge();
+    }
+
+    refreshTable();
+        
+    }//GEN-LAST:event_cmbSortActionPerformed
 
     /**
      * @param args the command line arguments
