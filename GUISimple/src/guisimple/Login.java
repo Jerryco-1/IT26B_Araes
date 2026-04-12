@@ -252,7 +252,7 @@ public class Login extends javax.swing.JFrame {
     if (AuthManager.login(id, pass)) {
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful!");
 
-        new DashboardFrame().setVisible(true);
+        new Dashboard().setVisible(true);
         this.dispose();
 
     } else {
@@ -274,7 +274,8 @@ public class Login extends javax.swing.JFrame {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
         
-        
+        new CreateAccount().setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     /**
