@@ -22,21 +22,20 @@ public class CreateAccount extends javax.swing.JFrame {
 
         LeftPanel = new javax.swing.JPanel();
         RightPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        lblSignUpHeader = new javax.swing.JLabel();
+        lblManagerID = new javax.swing.JLabel();
+        txtManagerID = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        lblConfirmPassword = new javax.swing.JLabel();
+        txtConfirmPassword = new javax.swing.JTextField();
+        btnSignUp = new javax.swing.JButton();
+        lblIAlreadyHaveAccount = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 560));
         setResizable(false);
 
         LeftPanel.setBackground(new java.awt.Color(255, 0, 51));
@@ -56,45 +55,45 @@ public class CreateAccount extends javax.swing.JFrame {
         RightPanel.setBackground(new java.awt.Color(0, 0, 0));
         RightPanel.setPreferredSize(new java.awt.Dimension(400, 525));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("SIGN UP");
+        lblSignUpHeader.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblSignUpHeader.setForeground(new java.awt.Color(255, 0, 51));
+        lblSignUpHeader.setText("SIGN UP");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Manager ID:");
+        lblManagerID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblManagerID.setForeground(new java.awt.Color(255, 255, 255));
+        lblManagerID.setText("Manager ID:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        txtManagerID.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Username:");
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("Username:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        txtUsername.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Password:");
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Password:");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Confirm Password:");
+        lblConfirmPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblConfirmPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblConfirmPassword.setText("Confirm Password:");
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        txtConfirmPassword.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Sign Up");
+        btnSignUp.setBackground(new java.awt.Color(255, 0, 51));
+        btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSignUp.setForeground(new java.awt.Color(0, 0, 0));
+        btnSignUp.setText("Sign Up");
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("I've already have account");
+        lblIAlreadyHaveAccount.setForeground(new java.awt.Color(255, 255, 255));
+        lblIAlreadyHaveAccount.setText("I've already have account");
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 0, 51));
-        jButton2.setText("Login");
+        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogin.setForeground(new java.awt.Color(255, 0, 51));
+        btnLogin.setText("Login");
 
         javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(RightPanel);
         RightPanel.setLayout(RightPanelLayout);
@@ -102,54 +101,54 @@ public class CreateAccount extends javax.swing.JFrame {
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightPanelLayout.createSequentialGroup()
                 .addContainerGap(142, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblSignUpHeader)
                 .addGap(114, 114, 114))
             .addGroup(RightPanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField1)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField2)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField3)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                        .addComponent(lblManagerID)
+                        .addComponent(txtManagerID)
+                        .addComponent(lblUsername)
+                        .addComponent(txtUsername)
+                        .addComponent(lblPassword)
+                        .addComponent(txtPassword)
+                        .addComponent(lblConfirmPassword)
+                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RightPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblIAlreadyHaveAccount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnLogin)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RightPanelLayout.setVerticalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
+                .addComponent(lblSignUpHeader)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel2)
+                .addComponent(lblManagerID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(lblConfirmPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton2))
+                    .addComponent(lblIAlreadyHaveAccount)
+                    .addComponent(btnLogin))
                 .addGap(37, 37, 37))
         );
 
@@ -214,17 +213,17 @@ public class CreateAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LeftPanel;
     private javax.swing.JPanel RightPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnSignUp;
+    private javax.swing.JLabel lblConfirmPassword;
+    private javax.swing.JLabel lblIAlreadyHaveAccount;
+    private javax.swing.JLabel lblManagerID;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblSignUpHeader;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField txtConfirmPassword;
+    private javax.swing.JTextField txtManagerID;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
