@@ -1,6 +1,8 @@
 
 package guisimple;
 
+import java.io.*;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -108,11 +110,21 @@ public class Login extends javax.swing.JFrame {
 
         checkboxShowPassword.setForeground(new java.awt.Color(255, 255, 255));
         checkboxShowPassword.setText("View Password");
+        checkboxShowPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxShowPasswordActionPerformed(evt);
+            }
+        });
 
         btnLogin.setBackground(new java.awt.Color(255, 0, 51));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(0, 0, 0));
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         lblCreateAccountHere.setForeground(new java.awt.Color(255, 255, 255));
         lblCreateAccountHere.setText("Create account here");
@@ -120,6 +132,11 @@ public class Login extends javax.swing.JFrame {
         btnCreateAccount.setBackground(new java.awt.Color(0, 0, 0));
         btnCreateAccount.setForeground(new java.awt.Color(255, 0, 51));
         btnCreateAccount.setText("Create Account");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/blogo.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -221,6 +238,44 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String id = txtManagerID.getText();
+    String pass = new String(txtPassword.getPassword());
+
+    if (id.isEmpty() || pass.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill all fields!");
+        return;
+    }
+
+    if (AuthManager.login(id, pass)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Login Successful!");
+
+        new DashboardFrame().setVisible(true);
+        this.dispose();
+
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Invalid ID or Password!");
+    }
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void checkboxShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxShowPasswordActionPerformed
+        // TODO add your handling code here:
+        
+        if (checkboxShowPassword.isSelected()) {
+        txtPassword.setEchoChar((char) 0);
+    } else {
+        txtPassword.setEchoChar('*');
+    }
+    }//GEN-LAST:event_checkboxShowPasswordActionPerformed
+
+    private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     /**
      * @param args the command line arguments
