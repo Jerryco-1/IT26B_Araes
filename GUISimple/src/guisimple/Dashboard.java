@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package guisimple;
 
-/**
- *
- * @author Dell
- */
+
 public class Dashboard extends javax.swing.JFrame {
 
     /**
@@ -30,6 +24,7 @@ public class Dashboard extends javax.swing.JFrame {
         HeaderPanel = new javax.swing.JPanel();
         lblBasketballTeamManager = new javax.swing.JLabel();
         btnSignOut = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         LeftPanel = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         lblSearch = new javax.swing.JLabel();
@@ -40,7 +35,6 @@ public class Dashboard extends javax.swing.JFrame {
         scrollPlayers = new javax.swing.JScrollPane();
         tblPlayers = new javax.swing.JTable();
         RightPanel = new javax.swing.JPanel();
-        ImagePanel = new javax.swing.JPanel();
         CRUDPanel = new javax.swing.JPanel();
         lblManageFunction = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
@@ -66,25 +60,37 @@ public class Dashboard extends javax.swing.JFrame {
         btnSignOut.setForeground(new java.awt.Color(255, 0, 51));
         btnSignOut.setText("Sign Out");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/blogo2.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout HeaderPanelLayout = new javax.swing.GroupLayout(HeaderPanel);
         HeaderPanel.setLayout(HeaderPanelLayout);
         HeaderPanelLayout.setHorizontalGroup(
             HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderPanelLayout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(lblBasketballTeamManager)
-                .addGap(103, 103, 103)
+                .addGap(112, 112, 112)
                 .addComponent(btnSignOut)
-                .addGap(47, 47, 47))
+                .addGap(40, 40, 40))
         );
         HeaderPanelLayout.setVerticalGroup(
             HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBasketballTeamManager)
-                    .addComponent(btnSignOut))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HeaderPanelLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HeaderPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(lblBasketballTeamManager)))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnSignOut)
+                .addGap(42, 42, 42))
         );
 
         LeftPanel.setBackground(new java.awt.Color(0, 0, 0));
@@ -188,20 +194,6 @@ public class Dashboard extends javax.swing.JFrame {
         RightPanel.setBackground(new java.awt.Color(0, 0, 0));
         RightPanel.setPreferredSize(new java.awt.Dimension(363, 385));
 
-        ImagePanel.setBackground(new java.awt.Color(0, 0, 0));
-        ImagePanel.setPreferredSize(new java.awt.Dimension(323, 176));
-
-        javax.swing.GroupLayout ImagePanelLayout = new javax.swing.GroupLayout(ImagePanel);
-        ImagePanel.setLayout(ImagePanelLayout);
-        ImagePanelLayout.setHorizontalGroup(
-            ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        ImagePanelLayout.setVerticalGroup(
-            ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 176, Short.MAX_VALUE)
-        );
-
         CRUDPanel.setBackground(new java.awt.Color(0, 0, 0));
         CRUDPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         CRUDPanel.setPreferredSize(new java.awt.Dimension(313, 100));
@@ -226,53 +218,50 @@ public class Dashboard extends javax.swing.JFrame {
         CRUDPanel.setLayout(CRUDPanelLayout);
         CRUDPanelLayout.setHorizontalGroup(
             CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblManageFunction)
-                .addGap(59, 59, 59))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+            .addGroup(CRUDPanelLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRead, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
+                        .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRead, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(113, 113, 113))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
+                        .addComponent(lblManageFunction)
+                        .addGap(64, 64, 64))))
         );
         CRUDPanelLayout.setVerticalGroup(
             CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CRUDPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addComponent(lblManageFunction)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnCreate)
+                .addGap(35, 35, 35)
+                .addComponent(btnRead)
                 .addGap(29, 29, 29)
-                .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnRead))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addGap(33, 33, 33))
+                .addComponent(btnUpdate)
+                .addGap(34, 34, 34)
+                .addComponent(btnDelete)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(RightPanel);
         RightPanel.setLayout(RightPanelLayout);
         RightPanelLayout.setHorizontalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
             .addGroup(RightPanelLayout.createSequentialGroup()
-                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 43, Short.MAX_VALUE))
         );
         RightPanelLayout.setVerticalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightPanelLayout.createSequentialGroup()
-                .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightPanelLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         FooterPanel.setBackground(new java.awt.Color(255, 0, 51));
@@ -306,7 +295,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(LeftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
@@ -374,7 +363,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel CRUDPanel;
     private javax.swing.JPanel FooterPanel;
     private javax.swing.JPanel HeaderPanel;
-    private javax.swing.JPanel ImagePanel;
     private javax.swing.JPanel LeftPanel;
     private javax.swing.JPanel RightPanel;
     private javax.swing.JPanel SearchPanel;
@@ -385,6 +373,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnSignOut;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbSort;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBasketballTeamManager;
     private javax.swing.JLabel lblManageFunction;
