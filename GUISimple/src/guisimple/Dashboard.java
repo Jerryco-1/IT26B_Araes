@@ -1,65 +1,46 @@
 
 package guisimple;
 
-import java.util.ArrayList;
+import java.sql.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Dashboard extends javax.swing.JFrame {
-    
-    private ArrayList<String[]> players = new ArrayList<>();
-    
-    private void refreshTable() {
-    DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
-    model.setRowCount(0); // clear table
-
-    for (String[] p : players) {
-        model.addRow(p);
-    }
-}
-    private void bubbleSortByName() {
-    for (int i = 0; i < players.size() - 1; i++) {
-        for (int j = 0; j < players.size() - i - 1; j++) {
-            if (players.get(j)[0].compareToIgnoreCase(players.get(j + 1)[0]) > 0) {
-                String[] temp = players.get(j);
-                players.set(j, players.get(j + 1));
-                players.set(j + 1, temp);
-            }
-        }
-    }
-}
-    private void bubbleSortByAge() {
-    for (int i = 0; i < players.size() - 1; i++) {
-        for (int j = 0; j < players.size() - i - 1; j++) {
-            int age1 = Integer.parseInt(players.get(j)[1]);
-            int age2 = Integer.parseInt(players.get(j + 1)[1]);
-
-            if (age1 > age2) {
-                String[] temp = players.get(j);
-                players.set(j, players.get(j + 1));
-                players.set(j + 1, temp);
-            }
-        }
-    }
-}
-    
-    private void searchPlayer() {
-    String keyword = txtSearch.getText().toLowerCase();
-
-    DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
-    model.setRowCount(0);
-
-    for (String[] p : players) {
-        if (p[0].toLowerCase().contains(keyword)) {
-            model.addRow(p);
-        }
-    }
-}
 
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+    }
+    
+    // ================= LOAD PLAYERS =================
+    private void loadPlayers() {
+
+        try {
+            Connection conn = connectionDB.getConnection();
+
+            String sql = "SELECT * FROM players";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+
+                model.addRow(new Object[]{
+                    rs.getString("name"),
+                    rs.getInt("age"),
+                    rs.getString("position"),
+                    rs.getString("market_value"),
+                    rs.getString("best_role")
+                });
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     /**
@@ -402,16 +383,27 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         
-        String name = javax.swing.JOptionPane.showInputDialog(this, "Enter Player Name:");
-    String age = javax.swing.JOptionPane.showInputDialog(this, "Enter Age:");
-    String position = javax.swing.JOptionPane.showInputDialog(this, "Enter Position:");
-    String value = javax.swing.JOptionPane.showInputDialog(this, "Enter Market Value:");
-    String role = javax.swing.JOptionPane.showInputDialog(this, "Enter Best Role:");
+        try {
+            Connection conn = connectionDB.getConnection();
 
-    if (name != null && age != null) {
-        players.add(new String[]{name, age, position, value, role});
-        refreshTable();
-    }
+            String sql = "INSERT INTO players (name, age, position, market_value, best_role) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, JOptionPane.showInputDialog(this, "Enter Name:"));
+            pst.setInt(2, Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Age:")));
+            pst.setString(3, JOptionPane.showInputDialog(this, "Enter Position:"));
+            pst.setString(4, JOptionPane.showInputDialog(this, "Enter Market Value:"));
+            pst.setString(5, JOptionPane.showInputDialog(this, "Enter Best Role:"));
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Player Added!");
+
+            loadPlayers();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
@@ -419,20 +411,20 @@ public class Dashboard extends javax.swing.JFrame {
         
         int row = tblPlayers.getSelectedRow();
 
-    if (row == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please select a player first!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a player first!");
+            return;
+        }
 
-    String[] p = players.get(row);
+        DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
 
-    javax.swing.JOptionPane.showMessageDialog(this,
-        "Name: " + p[0] +
-        "\nAge: " + p[1] +
-        "\nPosition: " + p[2] +
-        "\nValue: " + p[3] +
-        "\nRole: " + p[4]
-    );
+        JOptionPane.showMessageDialog(this,
+                "Name: " + model.getValueAt(row, 0) +
+                "\nAge: " + model.getValueAt(row, 1) +
+                "\nPosition: " + model.getValueAt(row, 2) +
+                "\nValue: " + model.getValueAt(row, 3) +
+                "\nRole: " + model.getValueAt(row, 4)
+        );
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -440,74 +432,142 @@ public class Dashboard extends javax.swing.JFrame {
         
         int row = tblPlayers.getSelectedRow();
 
-    if (row == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please select a player to update!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a player to update!");
+            return;
+        }
 
-    String[] p = players.get(row);
+        String name = JOptionPane.showInputDialog(this, "Edit Name:");
+        String age = JOptionPane.showInputDialog(this, "Edit Age:");
+        String position = JOptionPane.showInputDialog(this, "Edit Position:");
+        String value = JOptionPane.showInputDialog(this, "Edit Market Value:");
+        String role = JOptionPane.showInputDialog(this, "Edit Best Role:");
 
-    String name = javax.swing.JOptionPane.showInputDialog(this, "Edit Name:", p[0]);
-    String age = javax.swing.JOptionPane.showInputDialog(this, "Edit Age:", p[1]);
-    String position = javax.swing.JOptionPane.showInputDialog(this, "Edit Position:", p[2]);
-    String value = javax.swing.JOptionPane.showInputDialog(this, "Edit Market Value:", p[3]);
-    String role = javax.swing.JOptionPane.showInputDialog(this, "Edit Best Role:", p[4]);
+        try {
+            Connection conn = connectionDB.getConnection();
 
-    players.set(row, new String[]{name, age, position, value, role});
-    refreshTable();
-    PlayerManager.savePlayers(players);
+            String sql = "UPDATE players SET name=?, age=?, position=?, market_value=?, best_role=? WHERE name=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, name);
+            pst.setInt(2, Integer.parseInt(age));
+            pst.setString(3, position);
+            pst.setString(4, value);
+            pst.setString(5, role);
+
+            // original name from table
+            pst.setString(6, tblPlayers.getValueAt(row, 0).toString());
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Player Updated!");
+
+            loadPlayers();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int row = tblPlayers.getSelectedRow();
 
-    if (row == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please select a player to delete!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a player to delete!");
+            return;
+        }
 
-    players.remove(row);
-    refreshTable();
-    PlayerManager.savePlayers(players);
+        try {
+            Connection conn = connectionDB.getConnection();
+
+            String sql = "DELETE FROM players WHERE name=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, tblPlayers.getValueAt(row, 0).toString());
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Player Deleted!");
+
+            loadPlayers();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-    public void keyReleased(java.awt.event.KeyEvent evt) {
-        searchPlayer();
-    }
-});
+        try {
+            Connection conn = connectionDB.getConnection();
+
+            String sql = "SELECT * FROM players WHERE name LIKE ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, "%" + txtSearch.getText() + "%");
+
+            ResultSet rs = pst.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+
+                model.addRow(new Object[]{
+                    rs.getString("name"),
+                    rs.getInt("age"),
+                    rs.getString("position"),
+                    rs.getString("market_value"),
+                    rs.getString("best_role")
+                });
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
         // TODO add your handling code here:
         
-        int confirm = javax.swing.JOptionPane.showConfirmDialog(
-        this,
-        "Are you sure you want to sign out?",
-        "Confirm Sign Out",
-        javax.swing.JOptionPane.YES_NO_OPTION
-    );
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "Sign out?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION
+        );
 
-    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-        new Login().setVisible(true);
-        this.dispose();
-    }
+        if (confirm == JOptionPane.YES_OPTION) {
+            new Login().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSignOutActionPerformed
 
     private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
         // TODO add your handling code here:
-        String selected = cmbSort.getSelectedItem().toString();
+        loadPlayers(); // reset from DB first
 
-    if (selected.equals("Sort by Name")) {
-        bubbleSortByName();
-    } else if (selected.equals("Sort by Age")) {
-        bubbleSortByAge();
-    }
+        DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
 
-    refreshTable();
+        int rowCount = model.getRowCount();
+
+        for (int i = 0; i < rowCount - 1; i++) {
+            for (int j = 0; j < rowCount - i - 1; j++) {
+
+                String a = model.getValueAt(j, 0).toString();
+                String b = model.getValueAt(j + 1, 0).toString();
+
+                if (a.compareToIgnoreCase(b) > 0) {
+
+                    for (int k = 0; k < model.getColumnCount(); k++) {
+                        Object temp = model.getValueAt(j, k);
+                        model.setValueAt(model.getValueAt(j + 1, k), j, k);
+                        model.setValueAt(temp, j + 1, k);
+                    }
+                }
+            }
+        }
         
     }//GEN-LAST:event_cmbSortActionPerformed
 
@@ -539,10 +599,8 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Dashboard().setVisible(true);
         });
     }
 
