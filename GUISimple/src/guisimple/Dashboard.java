@@ -74,9 +74,15 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         HeaderPanel = new javax.swing.JPanel();
         lblBasketballTeamManager = new javax.swing.JLabel();
-        btnSignOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         LeftPanel = new javax.swing.JPanel();
+        CRUDPanel = new javax.swing.JPanel();
+        btnCreate = new javax.swing.JButton();
+        btnRead = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnSignOut = new javax.swing.JButton();
+        RightPanel = new javax.swing.JPanel();
         SearchPanel = new javax.swing.JPanel();
         lblSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
@@ -85,13 +91,6 @@ public class Dashboard extends javax.swing.JFrame {
         TablePanel = new javax.swing.JPanel();
         scrollPlayers = new javax.swing.JScrollPane();
         tblPlayers = new javax.swing.JTable();
-        RightPanel = new javax.swing.JPanel();
-        CRUDPanel = new javax.swing.JPanel();
-        lblManageFunction = new javax.swing.JLabel();
-        btnCreate = new javax.swing.JButton();
-        btnRead = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         FooterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,17 +103,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         lblBasketballTeamManager.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblBasketballTeamManager.setForeground(new java.awt.Color(0, 0, 0));
-        lblBasketballTeamManager.setText("BASKETBALL TEAM MANAGER");
-
-        btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
-        btnSignOut.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSignOut.setForeground(new java.awt.Color(255, 0, 51));
-        btnSignOut.setText("Sign Out");
-        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignOutActionPerformed(evt);
-            }
-        });
+        lblBasketballTeamManager.setText("BASKETBALL ANALYST");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/blogo2.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -126,11 +115,9 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(HeaderPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                 .addComponent(lblBasketballTeamManager)
-                .addGap(112, 112, 112)
-                .addComponent(btnSignOut)
-                .addGap(40, 40, 40))
+                .addGap(238, 238, 238))
         );
         HeaderPanelLayout.setVerticalGroup(
             HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,14 +130,109 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(lblBasketballTeamManager)))
                 .addContainerGap(17, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSignOut)
-                .addGap(42, 42, 42))
         );
 
         LeftPanel.setBackground(new java.awt.Color(0, 0, 0));
         LeftPanel.setPreferredSize(new java.awt.Dimension(640, 411));
+
+        CRUDPanel.setBackground(new java.awt.Color(0, 0, 0));
+        CRUDPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        CRUDPanel.setPreferredSize(new java.awt.Dimension(313, 100));
+
+        btnCreate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        btnRead.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRead.setText("Read");
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
+        btnSignOut.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSignOut.setForeground(new java.awt.Color(255, 0, 51));
+        btnSignOut.setText("Sign Out");
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CRUDPanelLayout = new javax.swing.GroupLayout(CRUDPanel);
+        CRUDPanel.setLayout(CRUDPanelLayout);
+        CRUDPanelLayout.setHorizontalGroup(
+            CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CRUDPanelLayout.createSequentialGroup()
+                .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CRUDPanelLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CRUDPanelLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        CRUDPanelLayout.setVerticalGroup(
+            CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CRUDPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnCreate)
+                .addGap(29, 29, 29)
+                .addComponent(btnRead)
+                .addGap(30, 30, 30)
+                .addComponent(btnUpdate)
+                .addGap(30, 30, 30)
+                .addComponent(btnDelete)
+                .addGap(28, 28, 28)
+                .addComponent(btnSignOut)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(LeftPanel);
+        LeftPanel.setLayout(LeftPanelLayout);
+        LeftPanelLayout.setHorizontalGroup(
+            LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
+                .addGap(0, 46, Short.MAX_VALUE)
+                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        LeftPanelLayout.setVerticalGroup(
+            LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        RightPanel.setBackground(new java.awt.Color(0, 0, 0));
+        RightPanel.setPreferredSize(new java.awt.Dimension(363, 385));
 
         SearchPanel.setBackground(new java.awt.Color(0, 0, 0));
         SearchPanel.setPreferredSize(new java.awt.Dimension(542, 85));
@@ -185,14 +267,14 @@ public class Dashboard extends javax.swing.JFrame {
         SearchPanelLayout.setHorizontalGroup(
             SearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SearchPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(58, 58, 58)
                 .addComponent(lblSearch)
                 .addGap(18, 18, 18)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(lblSort)
                 .addGap(18, 18, 18)
-                .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SearchPanelLayout.setVerticalGroup(
@@ -235,114 +317,26 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(LeftPanel);
-        LeftPanel.setLayout(LeftPanelLayout);
-        LeftPanelLayout.setHorizontalGroup(
-            LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
-            .addGroup(LeftPanelLayout.createSequentialGroup()
-                .addComponent(TablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        LeftPanelLayout.setVerticalGroup(
-            LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeftPanelLayout.createSequentialGroup()
-                .addComponent(SearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(TablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
-        );
-
-        RightPanel.setBackground(new java.awt.Color(0, 0, 0));
-        RightPanel.setPreferredSize(new java.awt.Dimension(363, 385));
-
-        CRUDPanel.setBackground(new java.awt.Color(0, 0, 0));
-        CRUDPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        CRUDPanel.setPreferredSize(new java.awt.Dimension(313, 100));
-
-        lblManageFunction.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblManageFunction.setForeground(new java.awt.Color(255, 255, 255));
-        lblManageFunction.setText("Manage Function:");
-
-        btnCreate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCreate.setText("Create");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnRead.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnRead.setText("Read");
-        btnRead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReadActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CRUDPanelLayout = new javax.swing.GroupLayout(CRUDPanel);
-        CRUDPanel.setLayout(CRUDPanelLayout);
-        CRUDPanelLayout.setHorizontalGroup(
-            CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CRUDPanelLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
-                        .addGroup(CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRead, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(113, 113, 113))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDPanelLayout.createSequentialGroup()
-                        .addComponent(lblManageFunction)
-                        .addGap(64, 64, 64))))
-        );
-        CRUDPanelLayout.setVerticalGroup(
-            CRUDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CRUDPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(lblManageFunction)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(btnCreate)
-                .addGap(35, 35, 35)
-                .addComponent(btnRead)
-                .addGap(29, 29, 29)
-                .addComponent(btnUpdate)
-                .addGap(34, 34, 34)
-                .addComponent(btnDelete)
-                .addGap(37, 37, 37))
-        );
-
         javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(RightPanel);
         RightPanel.setLayout(RightPanelLayout);
         RightPanelLayout.setHorizontalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightPanelLayout.createSequentialGroup()
-                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RightPanelLayout.createSequentialGroup()
+                        .addComponent(SearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
+                    .addGroup(RightPanelLayout.createSequentialGroup()
+                        .addComponent(TablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         RightPanelLayout.setVerticalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightPanelLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(CRUDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+            .addGroup(RightPanelLayout.createSequentialGroup()
+                .addComponent(SearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
         );
 
         FooterPanel.setBackground(new java.awt.Color(255, 0, 51));
@@ -367,9 +361,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(RightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(RightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(FooterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -569,7 +563,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBasketballTeamManager;
-    private javax.swing.JLabel lblManageFunction;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSort;
     private javax.swing.JScrollPane scrollPlayers;
