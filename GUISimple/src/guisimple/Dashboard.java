@@ -1,8 +1,10 @@
 
 package guisimple;
 
-import java.sql.*;
-import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Dashboard extends javax.swing.JFrame {
@@ -434,41 +436,50 @@ public class Dashboard extends javax.swing.JFrame {
         
         int row = tblPlayers.getSelectedRow();
 
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Select a player to update!");
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a player to update!");
+        return;
+    }
+
+    try {
+        Connection conn = connectionDB.getConnection();
+
+        String currentName = tblPlayers.getValueAt(row, 0).toString();
+
+        String name = JOptionPane.showInputDialog(this, "Enter new Name:", currentName);
+        String ageStr = JOptionPane.showInputDialog(this, "Enter new Age:", tblPlayers.getValueAt(row, 1));
+        String position = JOptionPane.showInputDialog(this, "Enter new Position:", tblPlayers.getValueAt(row, 2));
+        String value = JOptionPane.showInputDialog(this, "Enter new Market Value:", tblPlayers.getValueAt(row, 3));
+        String role = JOptionPane.showInputDialog(this, "Enter new Best Role:", tblPlayers.getValueAt(row, 4));
+
+        if (name == null || ageStr == null || name.isEmpty() || ageStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name and Age are required!");
             return;
         }
 
-        String name = JOptionPane.showInputDialog(this, "Edit Name:");
-        String age = JOptionPane.showInputDialog(this, "Edit Age:");
-        String position = JOptionPane.showInputDialog(this, "Edit Position:");
-        String value = JOptionPane.showInputDialog(this, "Edit Market Value:");
-        String role = JOptionPane.showInputDialog(this, "Edit Best Role:");
+        int age = Integer.parseInt(ageStr);
 
-        try {
-            Connection conn = connectionDB.getConnection();
+        String sql = "UPDATE players SET name=?, age=?, position=?, market_value=?, best_role=? WHERE name=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
 
-            String sql = "UPDATE players SET name=?, age=?, position=?, market_value=?, best_role=? WHERE name=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, name);
+        pst.setInt(2, age);
+        pst.setString(3, position);
+        pst.setString(4, value);
+        pst.setString(5, role);
+        pst.setString(6, currentName);
 
-            pst.setString(1, name);
-            pst.setInt(2, Integer.parseInt(age));
-            pst.setString(3, position);
-            pst.setString(4, value);
-            pst.setString(5, role);
+        pst.executeUpdate();
 
-            // original name from table
-            pst.setString(6, tblPlayers.getValueAt(row, 0).toString());
+        JOptionPane.showMessageDialog(this, "Player updated!");
 
-            pst.executeUpdate();
+        loadPlayers();
 
-            JOptionPane.showMessageDialog(this, "Player Updated!");
-
-            loadPlayers();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Age must be a number!");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Update error: " + e.getMessage());
+    }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
