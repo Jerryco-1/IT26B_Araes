@@ -14,35 +14,32 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        loadPlayers();
     }
     
     // ================= LOAD PLAYERS =================
     private void loadPlayers() {
 
-        try {
-            Connection conn = connectionDB.getConnection();
+        DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
+    model.setRowCount(0);
 
-            String sql = "SELECT * FROM players";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+    try (Connection conn = connectionDB.getConnection();
+         PreparedStatement pst = conn.prepareStatement("SELECT * FROM players");
+         ResultSet rs = pst.executeQuery()) {
 
-            DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
-            model.setRowCount(0);
-
-            while (rs.next()) {
-
-                model.addRow(new Object[]{
-                    rs.getString("name"),
-                    rs.getInt("age"),
-                    rs.getString("position"),
-                    rs.getString("market_value"),
-                    rs.getString("best_role")
-                });
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("name"),
+                rs.getInt("age"),
+                rs.getString("position"),
+                rs.getString("market_value"),
+                rs.getString("best_role")
+            });
         }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
     }
     
     
