@@ -556,29 +556,36 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
         // TODO add your handling code here:
-        loadPlayers(); // reset from DB first
+        String selected = cmbSort.getSelectedItem().toString();
+
+    String sql;
+
+    if (selected.equals("Sort by Name")) {
+        sql = "SELECT * FROM players ORDER BY name ASC";
+    } else {
+        sql = "SELECT * FROM players ORDER BY age ASC";
+    }
+
+    try (Connection conn = connectionDB.getConnection();
+         PreparedStatement pst = conn.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
 
         DefaultTableModel model = (DefaultTableModel) tblPlayers.getModel();
+        model.setRowCount(0);
 
-        int rowCount = model.getRowCount();
-
-        for (int i = 0; i < rowCount - 1; i++) {
-            for (int j = 0; j < rowCount - i - 1; j++) {
-
-                String a = model.getValueAt(j, 0).toString();
-                String b = model.getValueAt(j + 1, 0).toString();
-
-                if (a.compareToIgnoreCase(b) > 0) {
-
-                    for (int k = 0; k < model.getColumnCount(); k++) {
-                        Object temp = model.getValueAt(j, k);
-                        model.setValueAt(model.getValueAt(j + 1, k), j, k);
-                        model.setValueAt(temp, j + 1, k);
-                    }
-                }
-            }
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("name"),
+                rs.getInt("age"),
+                rs.getString("position"),
+                rs.getString("market_value"),
+                rs.getString("best_role")
+            });
         }
-        
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Sort error: " + e.getMessage());
+    }
     }//GEN-LAST:event_cmbSortActionPerformed
 
     /**
